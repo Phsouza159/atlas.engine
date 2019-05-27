@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+
+    <div id='master'></div>
+
+</body>
+
+<script src="./js/atlas-engine/source/atlas.build.js"></script>
+<script>
+
+    let urlBase = 'http://127.0.0.1:3000/'
+    let urlCorrent = window.location.href;
+
+    let url = window.location.pathname;
+    var app = null;
+    
+    let getCookie = function(name) {
+        let cokies = document.cookie;
+        let prefix = `${name}=`;
+        let begin = cokies.indexOf(`; ${prefix}`);
+
+        if(begin == -1)
+        {
+            begin = cokies.indexOf(prefix);
+
+            if(begin != 0)
+            {
+                return null;
+            }
+        }else {
+            begin += 2;
+        }
+
+        let end = cokies.indexOf(';' , begin);
+
+        if(end == -1)
+        {
+            end = cokies.length;
+        }
+
+        return unescape(cokies.substring(begin + prefix.length , end));
+    }
+
+    var init = async function (prj) {
+
+        let data = fetch(`./portifolho/getConfig/${prj}`);
+
+        let json = await data.then((data) => data.json())
+            .catch((err) => console.error(err));
+        if (json != null) {
+
+            json.index = url;
+
+            app = new AtlasCtor(json);
+        }
+    }
+
+    let prj = getCookie('projetoName');
+
+    init(prj)
+
+</script>
+</html>

@@ -1,0 +1,31 @@
+<br>
+<div id="interface">
+    <div id="intro-whatis" class="section">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Data de nascimento</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% listUser.forEach( element => { %>
+                <tr>
+                    <td scope='row'><%- element._id %></td>
+                    <td><%- element.nome %></td>
+                    <td><%- element.cpf %></td>
+                    <td><%- element._getDataNascimento() %></td>
+                    <td align='center'><a href='./formulario/edit/<%- element.cpf %>'>editar</a></td>
+                    <td align='center'><a href='./formulario/delet/<%- element.cpf %>'>excluir</a></td>
+                </tr>
+                <% }); %>
+            </tbody>
+
+        </table>
+    </div>
+</div>

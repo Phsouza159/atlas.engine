@@ -1,0 +1,62 @@
+<%- contentFor('body')%>
+</br>
+<div id="interface" style="padding-left: 10% ; padding-right:10%">
+    <div id="intro-whatis" class="section">
+
+        <table class='table'>
+            <thead class='thead-dark'>
+                <tr>
+                    <th>Posição</th>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Quest. 1</th>
+                    <th>Quest. 2</th>
+                    <th>Quest. 3</th>
+                    <th>Quest. 4</th>
+                    <th>Quest. 5</th>
+                    <th>Quest. 6</th>
+                    <th>Quest. 7</th>
+                    <th>Quest. 8</th>
+                    <th>Quest. 9</th>
+                    <th>Quest. 10</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#</td>
+                    <td colspan='2'><b>Gabarito</b></td>
+                    @foreach($gabarito as $item)
+                        <td>
+                            <font color='green'><b>{{$item}}</b></font>
+                        </td>
+                    @endforeach
+                    <td>10.0</td>
+                </tr>
+                @foreach($listUser as $item)
+                    @if($item->getPessoaDTO()->getAtivo())
+                        @php
+                            $resp = $item->getRespostaArray();
+                        @endphp
+
+                        <tr>
+                            <td>{{++$contador}}</td>
+                            <td>{{$item->getPessoaDTO()->getId()}}</td>
+                            <td>{{$item->getPessoaDTO()->getNome()}}</td>
+
+                            @for($i = 0 ; $i < 10 ; $i++)
+                                @if($resp[$i] == $gabarito[$i])
+                                    <td><font color='green'><b>{{$resp[$i]}}</b></font></td>
+                                @else
+                                    <td><font color='red'><b>{{$resp[$i]}}</b></font></td>
+                                @endif
+                            @endfor
+
+                            <td>{{$item->getNota()}}</td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>

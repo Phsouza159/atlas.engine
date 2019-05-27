@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= title %></title>
+
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id='master'>
+
+    <button onclick="init('prj-php')">prj-php</button>
+
+  </div>
+
+ </body>
+
+<script src="./js/atlas-engine/source/atlas.build.js"></script>
+<script>
+  
+  let urlBase = 'http://127.0.0.1:3000/'
+  var app = null;
+
+  var init = async function(prj) {
+
+    
+
+    let data = fetch(`./portifolho/getConfig/${prj}`);
+
+    let json = await data.then((data) => data.json())
+                         .catch((err) => console.error(err));      
+    if(json != null)
+    {
+      app = new AtlasCtor(json);
+
+      document.cookie = `projetoName=${prj}`;
+    }
+    else {
+      throw 'objeto config não carregado';
+    }
+  }
+  /*
+  let app = new AtlasCtor({
+
+    id: 'atlas-body',
+
+    index: '/',
+
+    securyte: false,
+
+    root: '"http://localhost:3000/',
+
+    modulesJson : './js/atlas-engine/resources/modules.json',
+
+    rout: [
+      { url : './html/index.html' , autentificacao : false , name : 'index' , path : '/' , title : 'home' },
+      { url : './html/contact.html' , autentificacao : false , name : 'contatc' , path : '/contact' , title : 'contato'},
+    ],
+
+    required: {
+      scripts: [
+        './vendor/jquery/dist/jquery.js',
+        './vendor/bootstrap/dist/js/bootstrap.js',
+      ],
+      links: [
+        './vendor/bootstrap/dist/css/bootstrap.css', 
+      ],
+      partialViews: [
+        {
+            view: './html/partialViews.html'
+          , name : 'teste'
+          , ids: ['teste1', 'teste2']
+        },
+      ],
+    }
+  });
+  */
+</script>
+
+</html>

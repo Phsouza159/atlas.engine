@@ -1,0 +1,24 @@
+{
+  "name": "node.atlas",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "^1.6.3",
+    "morgan": "~1.9.1",
+    "ramda": "^0.26.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015-native-modules": "^6.9.4",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  }
+}

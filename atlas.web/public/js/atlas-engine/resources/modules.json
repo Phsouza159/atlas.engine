@@ -1,0 +1,24 @@
+{
+    "urlPathModule" : "http://localhost:3000/js/atlas-engine/dist/modules/",
+
+    "modules" : [
+        {
+            "Name" : "form",
+            "method" : "form",
+            "version" : "1.0.0",
+            "path" : "atlas.form.js"
+        },
+        {
+            "Name" : "if",
+            "method" : "if",
+            "version" : "1.0.0",
+            "path" : "atlas.if.js"
+        },
+        {
+            "Name" : "for",
+            "method" : "for",
+            "version" : "1.0.0",
+            "path" : "atlas.for.js"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "id": "atlas-body",
+    "index": "/index",
+    "master": {
+      "url" : "./html/master.html" , 
+      "idInsert" : "master"
+    },
+    "securyte": false,
+
+    "root": "http://localhost:3000/",
+
+    "modulesJson" : "./js/atlas-engine/resources/modules.json",
+
+    "rout": [
+      { "url" : "./html/index.html" , "autentificacao" : false , "name" : "index" , "path" : "/index" , "title" : "home" },
+      { "url" : "./html/video.html" , "autentificacao" : false , "name" : "video" , "path" : "/video" , "title" : "video"},
+      { "url" : "./html/formulario.html" , "autentificacao" : false , "name" : "formulario" , "path" : "/formulario" , "title" : "formulario"},
+      { "url" : "./html/listagem.html" , "autentificacao" : false , "name" : "listagem" , "path" : "/listagem" , "title" : "listagem"},
+      { "url" : "./html/questionario.html" , "autentificacao" : false , "name" : "questionario" , "path" : "/questionario" , "title" : "questionario"},
+      { "url" : "./html/ranking.html" , "autentificacao" : false , "name" : "ranking" , "path" : "/ranking" , "title" : "ranking"} ,
+      { "url" : "./html/contact.html" , "autentificacao" : false , "name" : "contatc" , "path" : "/contact" , "title" : "contato"}
+    ],
+
+    "required": {
+      "scripts": [
+        "./vendor/jquery/dist/jquery.js",
+        "./vendor/bootstrap/dist/js/bootstrap.js"
+      ],
+      "links": [
+        "./vendor/bootstrap/dist/css/bootstrap.css" , 
+        "./css/font-awesome.min.css" ,
+        "./css/nivo-lightbox.css" ,
+        "./css/nivo-lightbox-theme/default/default.css" , 
+        "./css/owl.carousel.css" ,
+        "./css/owl.theme.css" ,
+        "./css/owl.theme.css" , 
+        "./css/flexslider.css" ,
+        "./css/animate.css" ,
+        "./css/style.css" ,
+        "./css/cssProjeto.css" ,
+        "./css/default.css"
+      ],
+      "partialViews": [
+        {
+            "view": "./html/partialView/questoes.html"
+          , "name" : "listQuest"
+          , "ids": ["quest1" , "quest2"]
+        }
+      ]
+    } 
+}

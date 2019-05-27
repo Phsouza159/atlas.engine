@@ -1,0 +1,217 @@
+<br>
+<div id="interface" style="padding-left: 10% ; padding-right:10%">
+    <div id="intro-whatis" class="section">
+
+        <div data-view='listQuest.quest1' data-component="classCss=component-hiden-all component-quest1">
+            <P>OLA</P>
+        </div>
+
+        <div data-view='listQuest.quest2' data-component="classCss=component-hiden-all component-quest2"></div>
+
+
+        <!--
+        <% if( id != null) { %>
+
+        @component('partialviews/quest1' , ['classCss' => 'component-hiden-all component-quest1'])
+        <button type='button' class='btn btn-primary' onclick='naveQuest(2)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest2' , ['classCss' => 'component-hiden-all component-quest2'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(1 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='naveQuest(3)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest3' , ['classCss' => 'component-hiden-all component-quest3'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(2 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='naveQuest(4)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest4' , ['classCss' => 'component-hiden-all component-quest4'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(3 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='naveQuest(5)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest5' , ['classCss' => 'component-hiden-all component-quest5'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(4 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='naveQuest(6)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest6' , ['classCss' => 'component-hiden-all component-quest6'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(5 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='naveQuest(7)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest7' , ['classCss' => 'component-hiden-all component-quest7'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(6 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='naveQuest(8)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest8' , ['classCss' => 'component-hiden-all component-quest8'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(7 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='naveQuest(9)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest9' , ['classCss' => 'component-hiden-all component-quest9'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(8 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='naveQuest(10)'>Próxma questão</button>
+        @endcomponent
+
+        @component('partialviews/quest10' , ['classCss' => 'component-hiden-all component-quest10'])
+        <button type='button' class='btn btn-dark' onclick='naveQuest(8 , true)'>Voltar</button>
+        <button type='button' class='btn btn-primary' onclick='showQuadroResumo()'>Ver quadro resumo</button>
+        @endcomponent
+
+        @component('partialviews/quadroResumo' , ['classCss' => 'component-hiden-all component-quadroResumo'])
+        <button type='button' class='btn btn-dark'
+            onclick='naveQuest(10 , true) , hidenComponentByClass("component-quadroResumo") '>Voltar ao
+            questionario</button>
+
+        <br />
+
+        <form action="http://127.0.0.1:8080/Prj-php/public/questionario/quadroResumo" method="POST">
+            @csrf
+
+            <input name="cpf" type="hidden" value="{{$cpf}}">
+            <input id='input-respostas' name="respotas" type="hidden" value="">
+
+            <button type='submit' class='btn btn-primary'>Finalizar questionario</button>
+        </form>
+        @endcomponent
+        <% } %>
+
+        -->
+    </div>
+</div>
+
+<div class='modal fade' id='exemplomodal' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel'
+    data-backdrop='   static'>
+    <div class='modal-dialog modal-lg' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h4 class='modal-title' id='gridSystemModalLabel'>Olá informe o seu CPF:</h4>
+            </div>
+            <div class='modal-body'>
+                <form action='./questionario' method="get">
+                    CPF:<input type='text' name='cpf' value='' required='required' />
+                    <input type='submit' class='btn btn-primary' value='ENVIAR'>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+
+<script>
+    let numAtualQuest = 1;
+    let resps = [];
+
+    var hidenComponentAll = () => {
+        $('.component-hiden-all').hide();
+    }
+
+    var hidenComponentByClass = (classCss) => {
+        $(`.${classCss}`).hide();
+    }
+
+    var showComponentByClass = (classCss) => {
+        $(`.${classCss}`).show();
+    }
+
+    var hidenAtualQuest = () => {
+        hidenComponentByClass(`component-quest${numAtualQuest}`);
+    }
+
+    var showAtualQuest = () => {
+        showComponentByClass(`component-quest${numAtualQuest}`);
+    }
+
+    var naveQuest = (numQuest, valid = false) => {
+
+        var obj = getResposta();
+
+        if (valid || obj.status == 'ok') {
+            inserRepostatQuest(obj.value);
+            hidenAtualQuest();
+            numAtualQuest = numQuest;
+            showAtualQuest();
+            return;
+        }
+
+        alert(`Insira uma resposta para a questão ${numAtualQuest}`);
+    }
+
+    var inserRepostatQuest = (value) => {
+        resps[numAtualQuest - 1] = value;
+        console.log(resps);
+    }
+
+    var getResposta = () => {
+        for (var item of $(`input[name='questao${numAtualQuest}']`)) {
+            if (item.checked)
+                return { value: item.value, status: 'ok' };
+        }
+
+        return { status: 'vazio' };
+    }
+
+    var showQuadroResumo = () => {
+        naveQuest(10);
+        hidenAtualQuest();
+        showComponentByClass('component-quadroResumo');
+        criarQuadroResumo();
+        preparaEnvioResposta();
+    }
+
+    var preparaEnvioResposta = () => {
+        var jsonString = JSON.stringify(resps);
+        var input = document.getElementById('input-respostas');
+
+        input.value = jsonString;
+    }
+
+    var criarQuadroResumo = () => {
+        var i = 10, quadroResumo = ''
+            , classCss = 'p-3 mb-2 bg-info text-white', style = 'padding-left: 50px;', quadroResumo;
+
+        quadroResumo = document.getElementById('quadro-resumo-body');
+        quadroResumo.innerHTML = null;
+
+        for (j = 1; j <= i; j++) {
+            var div = document.createElement('div');
+            var p = document.createElement('p');
+
+            p.innerHTML = `<b>A questao ${j})</b> Foi: ${resps[j - 1]}`;
+
+            div.setAttribute('class', classCss);
+            div.setAttribute('style', style);
+
+            div.appendChild(p);
+
+            quadroResumo.appendChild(div);
+        }
+    }
+
+    var onloadPage = () => {
+        hidenComponentAll();
+        showAtualQuest();
+    }
+
+
+
+</script>
+
+<% if(id == null) { %>
+    <script> 
+        $(function () {
+            $('#exemplomodal').modal('show');
+        });
+    </script>
+<%  } else {  %>
+    <script>
+        $(function () {
+            onloadPage();
+        });
+    </script>
+<%  } %>
+
+-->
